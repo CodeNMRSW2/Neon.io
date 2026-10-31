@@ -1,0 +1,1630 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุมนุมการเขียนโปรแกรมคอมพิวเตอร์ | NEON_CODE</title>
+<meta name="description" content="เว็บสื่อการสอนชุมนุมการเขียนโปรแกรมคอมพิวเตอร์ เรียน Python ตั้งแต่พื้นฐาน มีห้องเขียนโค้ดและส่งงานออนไลน์ในเว็บเดียว">
+
+<script>
+/* ================================================================
+   ★★★  แก้ไขข้อมูลเว็บได้ทั้งหมดในส่วนนี้  ★★★
+   ----------------------------------------------------------------
+   กติกาง่าย ๆ:
+   1) แก้เฉพาะข้อความที่อยู่ใน "เครื่องหมายคำพูด" เท่านั้น
+   2) อย่าลบเครื่องหมาย " , [ ] { } ที่อยู่รอบ ๆ
+   3) อยากเพิ่มบทเรียน/สื่อ/ภารกิจ → คัดลอกทั้งบรรทัด { ... }, แล้ววางต่อท้าย
+   4) ลิงก์ที่ยังไม่มี ใส่ "#" ไว้ก่อนได้
+   5) แก้เสร็จ กดบันทึก (Ctrl+S) แล้วรีเฟรชหน้าเว็บ (F5)
+   ================================================================ */
+const CONFIG = {
+
+  /* ---------- สีของเว็บ (รหัสสีแบบ #RRGGBB) ---------- */
+  สีหลัก: "#00F0FF",     // ฟ้านีออน  (ลองเปลี่ยนเป็น "#7CFFB2" เขียว, "#F5E50A" เหลือง)
+  สีรอง:  "#FF2A6D",     // ชมพูนีออน (ลองเปลี่ยนเป็น "#FF7A1A" ส้ม, "#E34BFF" ม่วง)
+
+  /* ---------- ข้อมูลชุมนุม ---------- */
+  ชื่อชุมนุม_อังกฤษ: "NEON_CODE",
+  ชื่อชุมนุม_ไทย: "ชุมนุมการเขียนโปรแกรมคอมพิวเตอร์",
+  ชื่อโรงเรียน: "[NMRSW2]",
+  ภาคเรียน: "[2/2569]",
+  วันเวลาประชุม: "[Fri] [14:00-14:50]",
+  ห้อง: "[224]",
+  ครูที่ปรึกษา: "[นางสาวจุฑารัตน์ พานเงิน]",
+  รับจำนวน: "[20] คน",
+
+  /* ---------- ส่วนหัว (Hero) ---------- */
+  หัวข้อบรรทัด1: "เขียนโค้ด",
+  หัวข้อบรรทัด2: "แฮ็กอนาคต",
+  หัวข้อบรรทัด3: "ด้วยมือของเราเอง",
+  คำโปรย: "ศูนย์รวมสื่อการสอนของชุมนุมการเขียนโปรแกรม ตั้งแต่ก้าวแรกของ Python ไปจนถึงสร้างเว็บและ IoT ของตัวเอง เรียนผ่านภารกิจ ลงมือทำจริงทุกคาบ",
+
+  /* ---------- ลิงก์ปุ่มติดต่อ ---------- */
+  ลิงก์ติดต่อ: "#",       // เช่น ลิงก์กลุ่ม LINE
+
+  /* ---------- บทเรียน แบ่งตามเลเวล ----------
+     ลิงก์: ใส่ลิงก์สไลด์/เอกสารของบทนั้น                     */
+  เลเวล: [
+    {
+      ชื่อ: "LV.01 เริ่มต้น",
+      บทเรียน: [
+        { เลขบท: "01", ป้าย: "LOGIC",  ชื่อบท: "คิดแบบโปรแกรมเมอร์",        รายละเอียด: "แตกปัญหาเป็นขั้นตอน เขียนผังงานและรหัสเทียมก่อนลงมือเขียนโค้ด", ลิงก์: "Lesson_PDF/บทที่ 01 คิดแบบโปรแกรมเมอร์.pdf" },
+        { เลขบท: "02", ป้าย: "PYTHON", ชื่อบท: "Python ก้าวแรก",             รายละเอียด: "print, input และตัวแปร สร้างโปรแกรมทักทายตัวแรกของเรา", ลิงก์: "Lesson_PDF/บทที่ 02 Python ก้าวแรก.pdf" },
+        { เลขบท: "03", ป้าย: "PYTHON", ชื่อบท: "เงื่อนไข if / elif / else",   รายละเอียด: "ให้โปรแกรมตัดสินใจเองได้ ทำเกมทายตัวเลขแบบง่าย", ลิงก์: "#" },
+        { เลขบท: "04", ป้าย: "PYTHON", ชื่อบท: "ลูป for / while",            รายละเอียด: "สั่งให้คอมทำงานซ้ำแทนเรา วาดลวดลายและสรุปคะแนนอัตโนมัติ", ลิงก์: "#" },
+      ]
+    },
+    {
+      ชื่อ: "LV.02 ต่อยอด",
+      บทเรียน: [
+        { เลขบท: "05", ป้าย: "PYTHON", ชื่อบท: "ฟังก์ชัน & โมดูล",           รายละเอียด: "แยกโค้ดเป็นชิ้นที่นำกลับมาใช้ซ้ำได้ อ่านง่ายและแก้ไขง่าย", ลิงก์: "#" },
+        { เลขบท: "06", ป้าย: "DATA",   ชื่อบท: "List & Dictionary",          รายละเอียด: "จัดเก็บและค้นหาข้อมูล ทำระบบเช็กชื่อหรือคลังคำศัพท์", ลิงก์: "#" },
+        { เลขบท: "07", ป้าย: "WEB",    ชื่อบท: "HTML & CSS เว็บแรก",          รายละเอียด: "สร้างหน้าเว็บโปรไฟล์ของตัวเอง แต่งสีและเลย์เอาต์ให้ปัง", ลิงก์: "#" },
+        { เลขบท: "08", ป้าย: "WEB",    ชื่อบท: "JavaScript ปลุกเว็บ",         รายละเอียด: "เพิ่มปุ่มกด แอนิเมชัน และมินิเกมบนเว็บของเรา", ลิงก์: "#" },
+      ]
+    },
+    {
+      ชื่อ: "LV.03 ขั้นสูง",
+      บทเรียน: [
+        { เลขบท: "09", ป้าย: "ALGO",    ชื่อบท: "อัลกอริทึมค้นหา & เรียงลำดับ", รายละเอียด: "Linear / Binary Search และ Sorting เปรียบเทียบความเร็วด้วยตัวเอง", ลิงก์: "#" },
+        { เลขบท: "10", ป้าย: "TEAM",    ชื่อบท: "Git & GitHub",              รายละเอียด: "ทำงานเป็นทีมแบบมือโปร เก็บเวอร์ชันโค้ดและรวมงานกันไม่พัง", ลิงก์: "#" },
+        { เลขบท: "11", ป้าย: "IOT",     ชื่อบท: "IoT กับบอร์ดไมโครคอนโทรลเลอร์", รายละเอียด: "เขียนโค้ดคุมไฟ เซนเซอร์ และอุปกรณ์จริง เช่น KidBright หรือ Arduino", ลิงก์: "#" },
+        { เลขบท: "12", ป้าย: "PROJECT", ชื่อบท: "Hackathon ชุมนุม",          รายละเอียด: "รวมทีมแก้โจทย์จริงภายในเวลาจำกัด แล้วนำเสนอผลงาน", ลิงก์: "#" },
+      ]
+    },
+  ],
+
+  /* ---------- คลังสื่อการสอน ----------
+     ไอคอนที่เลือกได้: "slide", "sheet", "code", "video", "book", "game"  */
+  สื่อการสอน: [
+    { ไอคอน: "slide", ชื่อ: "สไลด์บรรยาย",       รายละเอียด: "สรุปเนื้อหาแต่ละบทแบบเข้าใจง่าย ใช้สอนหน้าห้องหรืออ่านทบทวนเองได้", ปุ่ม: "เปิดสไลด์",       ลิงก์: "https://github.com/KURUMITOKISAKI542/ForStudy/tree/main" },
+    { ไอคอน: "sheet", ชื่อ: "ใบงาน & แบบฝึกหัด",  รายละเอียด: "โจทย์ไล่ระดับความยาก พร้อมเฉลยสำหรับครูและพี่เลี้ยง",            ปุ่ม: "ดาวน์โหลดใบงาน", ลิงก์: "#" },
+    { ไอคอน: "code",  ชื่อ: "โค้ดตัวอย่าง",       รายละเอียด: "ซอร์สโค้ดทุกบท คัดลอกไปรันต่อยอดเป็นโปรเจกต์ของตัวเองได้ทันที",     ปุ่ม: "ดูบน GitHub",    ลิงก์: "#" },
+    { ไอคอน: "video", ชื่อ: "คลิปย้อนหลัง",       รายละเอียด: "พลาดคาบไหนตามดูได้ พร้อมไทม์สแตมป์แยกตามหัวข้อ",                ปุ่ม: "ดูเพลย์ลิสต์",    ลิงก์: "#" },
+  ],
+
+  /* ---------- ภารกิจตลอดภาคเรียน ---------- */
+  ภารกิจ: [
+    { ขั้น: "STAGE_01",   ชื่อ: "ลงทะเบียน & ตั้งค่าเครื่อง", รายละเอียด: "ติดตั้งเครื่องมือ สร้างบัญชี และรู้จักเพื่อนร่วมทีม" },
+    { ขั้น: "STAGE_02",   ชื่อ: "ปูพื้นฐานตรรกะ",          รายละเอียด: "ฝึกคิดเป็นขั้นตอน เขียนโค้ดแก้โจทย์สั้นทุกสัปดาห์" },
+    { ขั้น: "STAGE_03",   ชื่อ: "สร้างโปรเจกต์ทีม",         รายละเอียด: "รวมทีม 3–4 คน เลือกปัญหาจริงในโรงเรียนมาแก้ด้วยโค้ด" },
+    { ขั้น: "FINAL_BOSS", ชื่อ: "Demo Day",               รายละเอียด: "โชว์ผลงานต่อเพื่อนและคุณครู พร้อมรับเกียรติบัตรชุมนุม" },
+  ],
+
+  /* ---------- Python Lab: ห้องเขียนโค้ดบนเว็บ ----------
+     ลิงก์ส่งงาน : วางลิงก์เว็บแอปจาก Google Apps Script (ลงท้ายด้วย /exec)
+                  นักเรียนส่งงานด้วยเลขประจำตัว + รหัสส่งงานส่วนตัว
+                  (ครูสร้างรหัสได้จากเมนู "ระบบส่งงาน" ใน Google Sheet)
+                  ถ้าปล่อยว่าง "" ไว้ ปุ่มส่งงานจะดาวน์โหลดไฟล์ .py ให้นักเรียนนำไปส่งครูเองแทน
+     โจทย์ส่งงาน: เพิ่มโจทย์ใหม่ = คัดลอกทั้งก้อน { ... }, แล้ววางต่อท้าย
+                  รหัส        = ชื่อสั้นภาษาอังกฤษ ห้ามซ้ำกัน (ใช้แยกงานในชีต)
+                  โค้ดเริ่มต้น = โค้ดที่นักเรียนเห็นตอนเปิดโจทย์ เขียนไว้ระหว่างเครื่องหมาย ` `
+                                (ในโค้ดห้ามมีเครื่องหมาย ` อยู่ข้างใน)                      */
+  ลิงก์ส่งงาน: "https://script.google.com/macros/s/AKfycbzhCxV5aoKP1--w2DkGefIGecBAlI2-dtVTcpvtxbodreq_lvtUy0BRQiVHji4yh3ds/exec",
+  โจทย์ส่งงาน: [
+    {
+      รหัส: "02-easy",
+      ชื่อ: "บทที่ 02 · EASY การ์ดแนะนำตัว",
+      โจทย์: "เก็บชื่อ ชั้นเรียน และงานอดิเรก ไว้ในตัวแปร แล้ว print ออกมา 3 บรรทัด",
+      โค้ดเริ่มต้น: `
+name = "ใส่ชื่อของคุณ"
+room = "ม.?/?"
+hobby = "ใส่งานอดิเรก"
+
+# ใช้ print แสดงข้อมูลทั้ง 3 อย่าง บรรทัดละ 1 อย่าง
+`,
+    },
+    {
+      รหัส: "02-normal",
+      ชื่อ: "บทที่ 02 · NORMAL เครื่องคิดค่าขนม",
+      โจทย์: "รับราคาขนม และจำนวนชิ้น แล้วแสดงราคารวมที่ต้องจ่าย",
+      โค้ดเริ่มต้น: `
+price = int(input("ราคาขนมชิ้นละ: "))
+# รับจำนวนชิ้น แล้วคำนวณและแสดงราคารวม
+`,
+    },
+    {
+      รหัส: "02-hard",
+      ชื่อ: "บทที่ 02 · HARD ค่าเฉลี่ย 3 วิชา",
+      โจทย์: "รับคะแนน 3 วิชา (มีทศนิยมได้) แล้วแสดงคะแนนรวมและค่าเฉลี่ย",
+      โค้ดเริ่มต้น: `
+# คะแนนมีทศนิยมได้ ใช้ float(input()) รับค่า
+`,
+    },
+  ],
+
+  /* ---------- ส่วนรับสมัคร ---------- */
+  หัวข้อรับสมัคร: "พร้อมเข้าสู่ระบบแล้วหรือยัง?",
+  ข้อความรับสมัคร: "เปิดรับนักเรียนทุกระดับชั้น ไม่ต้องมีพื้นฐานมาก่อน ขอแค่อยากลองและไม่กลัว error",
+
+  /* ---------- แถบตัววิ่ง ---------- */
+  ตัววิ่ง: ["PYTHON", "ALGORITHM", "HTML · CSS", "JAVASCRIPT", "GIT", "IOT", "HACKATHON"],
+};
+/* ================================================================
+   ★★★  จบส่วนแก้ไข — ด้านล่างนี้ไม่ต้องแตะ  ★★★
+   ================================================================ */
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--a:#00F0FF;--h:#FF2A6D;--a-dim:#00F0FF44;--h-dim:#FF2A6D55;--bg:#07070D;--bg2:#0A0B14;--card:#0F1020;--line:#262A42;--text:#E6E8F2;--muted:#B4B9CF;--muted2:#A9AEC6;--dim:#9AA0B8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Chakra Petch',system-ui,sans-serif;overflow-x:hidden}
+a{color:var(--a)}a:hover{color:var(--h)}
+.mono{font-family:'JetBrains Mono','Chakra Petch',monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.chamfer{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.grid-bg{background-image:linear-gradient(rgba(0,240,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.07) 1px,transparent 1px);background-size:48px 48px}
+.scan{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);animation:scan .6s linear infinite}
+@keyframes scan{to{background-position:0 8px}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes glitch{0%,92%,100%{transform:none;text-shadow:0 0 18px var(--a-dim)}93%{transform:translate(-3px,1px);text-shadow:3px 0 var(--h),-3px 0 var(--a)}95%{transform:translate(3px,-1px);text-shadow:-3px 0 var(--h),3px 0 var(--a)}97%{transform:translate(-1px,0);text-shadow:2px 0 #F5E50A}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.blink{animation:blink 1s steps(1) infinite}
+.glitch{animation:glitch 4s infinite}
+@media (prefers-reduced-motion:reduce){.blink,.glitch,.scan,.marquee-inner,.lab-status i{animation:none!important}}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* nav */
+header{position:relative;z-index:3;border-bottom:1px solid var(--a-dim);background:rgba(7,7,13,.85)}
+.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.logo-mark{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:2px solid var(--a);color:var(--a);font-weight:800;font-size:16px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.logo-name{font-weight:800;font-size:18px;letter-spacing:2px}
+.logo-sub{font-size:12px;color:var(--dim)}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;font-size:15px;font-weight:500}
+nav a{text-decoration:none;color:#C9CDE0;padding:10px 0}
+nav a.nav-lab{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--a);color:var(--a);font-family:'JetBrains Mono','Chakra Petch',monospace;font-size:14px;font-weight:600;letter-spacing:1px}
+nav a.nav-lab:hover{background:var(--a);color:var(--bg)}
+
+/* hero */
+.hero{position:relative;padding:96px 0 112px}
+.hero-diamond{position:absolute;top:80px;right:-120px;width:520px;height:520px;border:1px solid var(--h-dim);transform:rotate(45deg)}
+.hero-inner{position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:56px}
+.hero-text{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:13px;letter-spacing:2px}
+.badge{background:var(--h);color:var(--bg);padding:6px 10px;font-weight:800}
+h1{margin:0;font-weight:700;font-size:clamp(44px,7vw,92px);line-height:1.05;letter-spacing:-1px}
+h1 span{display:block}
+h1 .l3{font-size:.48em;color:#C9CDE0;font-weight:500;margin-top:12px}
+.lead{margin:0;max-width:560px;font-size:19px;line-height:1.7;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;font-weight:700;font-size:17px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn-primary{background:var(--a);color:var(--bg)}
+.btn-primary:hover{color:var(--bg);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--h)}
+.btn-ghost{border:1px solid var(--h);color:var(--h);font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:12px 32px;padding-top:12px;border-top:1px dashed #2A2D40;font-size:13px;color:var(--dim)}
+.meta b{color:var(--a);font-weight:400}
+.term-box{flex:1 1 400px;min-width:0;position:relative}
+.term-shadow{position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--h)}
+.term{position:relative;background:#0D0E18;border:1px solid var(--a);box-shadow:0 0 40px var(--a-dim)}
+.term-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid #22253A;font-size:12px;color:var(--dim)}
+.term-file{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+.term-run{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:-8px -8px -8px 0;padding:0 16px;border:1px solid var(--a);background:transparent;color:var(--a);font:800 13px 'JetBrains Mono',monospace;letter-spacing:2px;cursor:pointer;transition:background .15s,color .15s}
+.term-run:hover{background:var(--a);color:var(--bg)}
+.dots{display:flex;gap:8px}.dots i{width:12px;height:12px;display:block}
+.term-body{padding:24px 20px 28px;font-size:15px;line-height:1.9;overflow-x:auto;white-space:pre}
+.ln{color:#6B7090}.kw{color:var(--h)}.fn{color:var(--a)}.str{color:#F5E50A}.out{color:#7CFFB2}
+.cursor{display:inline-block;width:10px;height:18px;background:var(--a);vertical-align:middle}
+
+/* marquee */
+.marquee{background:var(--h);color:var(--bg);overflow:hidden;white-space:nowrap;font-weight:800;font-size:15px;letter-spacing:3px;padding:14px 0}
+.marquee-inner{display:inline-block;animation:marquee 28s linear infinite}
+
+/* sections */
+section.block{padding:112px 0}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:640px}
+.kicker{font-size:13px;letter-spacing:3px;color:var(--h)}
+h2{margin:0;font-size:clamp(32px,4.5vw,52px);line-height:1.15}
+.sec-p{margin:0;font-size:17px;line-height:1.7;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:40px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+
+/* lessons */
+.lesson-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{min-height:48px;padding:0 20px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;border:1px solid #3A3E58;background:transparent;color:#C9CDE0}
+.tab[aria-selected="true"]{border-color:var(--a);background:var(--a);color:var(--bg)}
+.lesson{display:flex;flex-direction:column;gap:16px;padding:28px 24px;background:var(--card);border:1px solid var(--line);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%);transition:border-color .2s,transform .2s}
+.lesson:hover{border-color:var(--a);transform:translateY(-3px)}
+.lesson-head{display:flex;align-items:center;justify-content:space-between}
+.lesson-no{font-weight:800;font-size:34px;color:var(--a)}
+.tag{font-size:11px;letter-spacing:1px;padding:4px 8px;border:1px solid var(--h-dim);color:#FF8FAE}
+.lesson h3,.mat h3{margin:0;font-size:21px;line-height:1.35}
+.lesson p,.mat p,.step p{margin:0;font-size:15px;line-height:1.7;color:var(--muted2);flex-grow:1}
+.more{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:13px;font-weight:600;color:var(--a);text-decoration:none}
+
+/* materials */
+.materials{border-top:1px solid #1C1F33;border-bottom:1px solid #1C1F33;background-color:var(--bg2)}
+.mat{display:flex;flex-direction:column;gap:14px;padding:28px 24px;background:var(--bg);border:1px solid var(--line)}
+
+/* lab intro */
+.lab-intro{border-bottom:1px solid #1C1F33}
+.lab-intro-grid{display:flex;flex-wrap:wrap;align-items:center;gap:48px}
+.lab-intro .sec-head{flex:999 1 420px;gap:16px}
+.lab-intro .btns{margin-top:12px}
+.lab-feats{flex:1 1 380px;min-width:0;list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line)}
+.lab-feats li{display:flex;gap:20px;padding:24px}
+.lab-feats li+li{border-top:1px solid var(--line)}
+.lab-feats .mono{flex:none;padding-top:4px;font-size:13px;color:var(--a)}
+.lab-feats h3{margin:0 0 6px;font-size:20px}
+.lab-feats p{margin:0;font-size:15px;line-height:1.65;color:var(--muted2)}
+
+/* mission */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:2px solid var(--a)}
+.step{display:flex;flex-direction:column;gap:10px;padding:28px 24px 8px 0}
+.step .mono{font-size:13px;color:var(--a)}
+.step:last-child .mono{color:var(--h)}
+.step h3{margin:0;font-size:22px}
+
+/* join */
+.join{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:40px;padding:clamp(32px,5vw,64px);background:var(--card);border:1px solid var(--a);box-shadow:0 0 60px var(--a-dim);clip-path:polygon(0 0,calc(100% - 40px) 0,100% 40px,100% 100%,40px 100%,0 calc(100% - 40px))}
+.join-text{flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.join-btns{flex:1 1 260px;display:flex;flex-direction:column;gap:12px}
+.join-btns .btn{width:100%}
+.btn-line{border:1px solid #3A3E58;color:var(--text);font-weight:500;font-size:16px}
+
+footer{border-top:1px solid #1C1F33;padding:32px 0}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:#8A90A8}
+
+/* ===== Python Lab window ===== */
+html.lab-open,html.lab-open body{overflow:hidden}
+.lab{position:fixed;inset:0;z-index:100;display:flex;padding:16px;background:rgba(3,3,8,.86);color-scheme:dark}
+.lab-win{position:relative;flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;background:#0A0B14;border:1px solid var(--a);box-shadow:0 0 50px var(--a-dim)}
+.lab-bar{display:flex;align-items:center;gap:14px;padding:8px 8px 8px 16px;background:#0D0E18;border-bottom:1px solid #22253A}
+.lab-title{flex:1;min-width:0;margin:0;font-size:14px;font-weight:800;letter-spacing:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lab-title span{font-weight:400;letter-spacing:0;color:var(--dim)}
+.lab-status{display:flex;align-items:center;gap:8px;margin:0;font-size:12px;color:var(--muted);white-space:nowrap}
+.lab-status i{flex:none;width:8px;height:8px;background:#6B7090}
+.lab-status[data-s="ready"] i{background:#7CFFB2}
+.lab-status[data-s="loading"] i,.lab-status[data-s="waiting"] i{background:#F5E50A;animation:blink 1s steps(1) infinite}
+.lab-status[data-s="running"] i,.lab-status[data-s="slow"] i{background:var(--a);animation:blink .5s steps(1) infinite}
+.lab-status[data-s="error"] i{background:var(--h)}
+.icon-btn{flex:none;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #3A3E58;background:transparent;color:var(--text);cursor:pointer}
+.icon-btn:hover{border-color:var(--h);color:var(--h)}
+.lab-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px 16px;border-bottom:1px solid #22253A}
+.lab-pick{flex:1 1 240px;min-width:0;max-width:440px;display:flex}
+.lab-pick select{flex:1;min-width:0;min-height:44px;padding:0 12px;background:#07070D;border:1px solid #3A3E58;color:var(--text);font:600 15px 'Chakra Petch',sans-serif;cursor:pointer}
+.lab-btns{display:flex;flex-wrap:wrap;gap:8px}
+.lbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid #3A3E58;background:transparent;color:var(--text);font:600 15px 'Chakra Petch',sans-serif;cursor:pointer;transition:border-color .15s,color .15s,background .15s,box-shadow .15s,transform .15s}
+.lbtn:hover:not(:disabled){border-color:var(--a);color:var(--a)}
+.lbtn:disabled{opacity:.4;cursor:not-allowed}
+.lbtn-run{background:var(--a);border-color:var(--a);color:var(--bg)}
+.lbtn-run:hover:not(:disabled){color:var(--bg);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--h)}
+.lbtn-stop{border-color:var(--h);color:#FF7A9C}
+.lbtn-stop:hover:not(:disabled){border-color:var(--h);color:var(--h)}
+.lbtn-send{border-color:#F5E50A;color:#F5E50A}
+.lbtn-send:hover:not(:disabled){border-color:#F5E50A;background:#F5E50A;color:var(--bg)}
+.lbtn:focus-visible,.icon-btn:focus-visible,.lab-link:focus-visible,.term-run:focus-visible,.lab-pick select:focus-visible{outline:2px solid #F5E50A;outline-offset:2px}
+.lab-brief{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:10px 16px;background:#07070D;border-bottom:1px solid #22253A}
+.lab-brief p{flex:1 1 320px;margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+.lab-sent{padding:4px 8px;font-size:12px;font-weight:600;background:#7CFFB2;color:#07070D}
+.lab-link{min-height:36px;padding:0 4px;background:none;border:0;color:var(--a);font:500 14px 'Chakra Petch',sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.lab-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.pane{min-width:0;min-height:0;display:flex;flex-direction:column}
+.pane+.pane{border-left:1px solid #22253A}
+.pane-head{display:flex;justify-content:space-between;gap:12px;padding:8px 16px;font-size:12px;letter-spacing:1px;color:var(--dim);background:#0D0E18;border-bottom:1px solid #1A1D2E}
+
+/* code editor: a transparent textarea over highlighted rows */
+.ed{--gw:calc(3ch + 28px);position:relative;flex:1;min-height:0;overflow:auto;background:#07070D;font:15px/1.65 'JetBrains Mono','Chakra Petch',ui-monospace,monospace;cursor:text}
+.ed:focus-within{box-shadow:inset 0 0 0 1px var(--a-dim)}
+.ed-doc{position:relative;width:max-content;min-width:100%;min-height:100%;padding:14px 0 calc(14px + 3.3em)}
+.ed-hl{pointer-events:none}
+.r{display:flex}
+.g{flex:none;position:sticky;left:0;z-index:2;width:var(--gw);padding-right:14px;text-align:right;color:#737899;background:#07070D;user-select:none}
+.c{white-space:pre;tab-size:4;padding:0 32px 0 14px;color:#E6E8F2}
+.r.err{background:rgba(255,42,109,.13)}
+.r.err .g{color:#FF7A9C;background:#1C0912}
+.ed-ta{position:absolute;top:0;right:0;bottom:0;left:var(--gw);z-index:1;width:auto;height:auto;margin:0;padding:14px 12px calc(14px + 3.3em) 14px;border:0;border-radius:0;resize:none;overflow:hidden;white-space:pre;tab-size:4;font:inherit;letter-spacing:normal;background:transparent;color:transparent;-webkit-text-fill-color:transparent;caret-color:var(--a);outline:none}
+.ed-ta::selection{background:rgba(0,240,255,.28)}
+.tk{color:var(--h)}.tb{color:var(--a)}.ts{color:#F5E50A}.tn{color:#B48CFF}.tc{color:#7F84A3}.tf{color:#7CFFB2}.td{color:#FF8FAE}
+
+/* console */
+.con{flex:1;min-height:0;overflow:auto;padding:14px 16px 24px;background:#050509;font:14px/1.65 'JetBrains Mono','Chakra Petch',ui-monospace,monospace;color:#D7DBEA;white-space:pre-wrap;overflow-wrap:anywhere}
+.con-out{display:inline;margin:0;font:inherit;white-space:inherit}
+.k-err{color:#FF7A9C}.k-hint{color:var(--a)}.k-sys{color:#7A7F9E}.k-echo{color:#7CFFB2}
+.con-field{width:min(30ch,80%);min-width:10ch;padding:0 4px;border:0;border-bottom:1px dashed #F5E50A;border-radius:0;background:rgba(245,229,10,.08);color:#F5E50A;font:inherit;caret-color:#F5E50A;outline:none}
+.con-field:focus{background:rgba(245,229,10,.15)}
+
+/* submit sheet */
+.sheet{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(3,3,8,.8)}
+.sheet-card{width:min(520px,100%);max-height:100%;overflow:auto;display:flex;flex-direction:column;gap:16px;padding:28px;background:#0F1020;border:1px solid #F5E50A;box-shadow:10px 10px 0 rgba(245,229,10,.18)}
+.sheet-head{display:flex;flex-direction:column;gap:6px}
+.sheet-head .kicker{margin:0;color:#F5E50A}
+.sheet-head h3{margin:0;font-size:26px}
+.sheet-task{margin:0;font-size:13px;line-height:1.5;color:var(--a)}
+.fld{min-width:0;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.fld input{width:100%;min-width:0;min-height:46px;padding:0 12px;background:#07070D;border:1px solid #3A3E58;border-radius:0;color:var(--text);font:500 16px 'Chakra Petch',sans-serif}
+.fld input:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 1px var(--a)}
+.fld-row{display:flex;flex-wrap:wrap;gap:12px}
+.fld-row .fld{flex:1 1 180px}
+.fld-row .fld-no{flex:0 1 120px}
+.sheet-note,.sheet-mode,.sheet-msg{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.sheet-mode:empty{display:none}
+.fld-group{display:flex;flex-direction:column;gap:16px}
+.sheet-hint{margin:0;font-size:13px;line-height:1.6;color:var(--dim)}
+.sheet-prefill{margin:0;padding:8px 12px;font-size:14px;line-height:1.5;color:#F5E50A;border:1px dashed rgba(245,229,10,.5)}
+.sheet-note[data-warn="1"]{color:#F5E50A}
+.sheet-msg[data-kind="ok"]{color:#7CFFB2}
+.sheet-msg[data-kind="err"]{color:#FF7A9C}
+.sheet-btns{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
+
+@media (max-width:860px){
+  .lab{padding:0}
+  .lab-win{overflow-y:auto;border:0;box-shadow:none}
+  .lab-main{flex:none;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(300px,56vh) minmax(260px,46vh)}
+  .pane+.pane{border-left:0;border-top:1px solid #22253A}
+  .ed{font-size:16px}
+  .lab-pick{max-width:none;flex-basis:100%}
+  .lab-title span,.key-hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="site">
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <span class="logo-mark mono">&lt;/&gt;</span>
+      <span>
+        <span class="logo-name mono" id="brand"></span><br>
+        <span class="logo-sub" data-t="ชื่อชุมนุม_ไทย"></span>
+      </span>
+    </a>
+    <nav aria-label="เมนูหลัก">
+      <a href="#lessons">บทเรียน</a>
+      <a href="#materials">สื่อการสอน</a>
+      <a href="#mission">ภารกิจ</a>
+      <a href="#join">ติดต่อ</a>
+      <a href="#lab" class="nav-lab">PYTHON LAB</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="hero grid-bg">
+  <div class="scan"></div>
+  <div class="hero-diamond" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <div class="badge-row mono">
+        <span class="badge">SYS.ONLINE</span>
+        <span style="color:var(--a)">// ภาคเรียน <span data-t="ภาคเรียน"></span> เปิดรับสมาชิกแล้ว</span>
+      </div>
+      <h1>
+        <span data-t="หัวข้อบรรทัด1"></span>
+        <span class="glitch" style="color:var(--a)" data-t="หัวข้อบรรทัด2"></span>
+        <span class="l3"><span data-t="หัวข้อบรรทัด3" style="display:inline"></span><span class="blink" style="display:inline;color:var(--h)">_</span></span>
+      </h1>
+      <p class="lead" data-t="คำโปรย"></p>
+      <div class="btns">
+        <a class="btn btn-primary chamfer" href="#lessons">เริ่มภารกิจแรก
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#materials">ดาวน์โหลดสื่อการสอน</a>
+      </div>
+      <div class="meta mono">
+        <span><b>&gt;</b> ประชุม: <span data-t="วันเวลาประชุม"></span></span>
+        <span><b>&gt;</b> ห้อง: <span data-t="ห้อง"></span></span>
+        <span><b>&gt;</b> ไม่ต้องมีพื้นฐาน</span>
+      </div>
+    </div>
+
+    <div class="term-box">
+      <div class="term-shadow" aria-hidden="true"></div>
+      <div class="term mono">
+        <div class="term-bar">
+          <span class="dots" aria-hidden="true"><i style="background:var(--h)"></i><i style="background:#F5E50A"></i><i style="background:var(--a)"></i></span>
+          <span class="term-file">~/club/mission_01.py</span>
+          <button type="button" class="term-run" data-lab="demo" data-autorun="1"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9-15 9z" fill="currentColor"/></svg>RUN<span class="sr-only"> โค้ดนี้ใน Python Lab</span></button>
+        </div>
+<div class="term-body"><span class="ln">01</span>  <span class="kw">def</span> <span class="fn">hack_the_future</span>(name):
+<span class="ln">02</span>      skills = [<span class="str">"logic"</span>, <span class="str">"code"</span>, <span class="str">"create"</span>]
+<span class="ln">03</span>      <span class="kw">for</span> s <span class="kw">in</span> skills:
+<span class="ln">04</span>          <span class="fn">print</span>(<span class="str">f"[+] {name} unlocked: {s}"</span>)
+<span class="ln">05</span>
+<span class="ln">06</span>  <span class="fn">hack_the_future</span>(<span class="str">"YOU"</span>)
+<span class="out">─────────────────────────────
+[+] YOU unlocked: logic
+[+] YOU unlocked: code
+[+] YOU unlocked: create</span>
+<span class="kw">$</span> <span class="cursor blink"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee mono" aria-hidden="true"><div class="marquee-inner" id="marquee"></div></div>
+
+<section id="lessons" class="block">
+  <div class="wrap stack">
+    <div class="lesson-top">
+      <div class="sec-head">
+        <span class="kicker mono">[ 01 ] CURRICULUM</span>
+        <h2>เลือกเลเวลของคุณ</h2>
+        <p class="sec-p">บทเรียนไล่จากพื้นฐานจนสร้างผลงานได้จริง แต่ละบทมีสไลด์ ใบงาน และโค้ดตัวอย่างให้ครบ</p>
+      </div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="เลือกระดับบทเรียน"></div>
+    </div>
+    <div class="cards" id="lesson-grid"></div>
+  </div>
+</section>
+
+<section id="materials" class="block materials grid-bg">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <span class="kicker mono">[ 02 ] ARSENAL</span>
+      <h2>คลังสื่อการสอน</h2>
+      <p class="sec-p">อาวุธครบมือสำหรับทุกคาบเรียน ทบทวนย้อนหลังได้ตลอด ดาวน์โหลดไปฝึกต่อที่บ้านก็ได้</p>
+    </div>
+    <div class="cards" id="mat-grid"></div>
+  </div>
+</section>
+
+<section id="lab-intro" class="block lab-intro">
+  <div class="wrap lab-intro-grid">
+    <div class="sec-head">
+      <span class="kicker mono">[ 03 ] PYTHON LAB</span>
+      <h2>ห้องเขียนโค้ดบนเว็บ</h2>
+      <p class="sec-p">เขียน Python แล้วกดรันได้ทันทีบนเบราว์เซอร์ ไม่ต้องติดตั้งโปรแกรมใด ๆ ทำโจทย์เสร็จก็กดส่งงานถึงครูได้จากหน้าต่างเดียวกัน</p>
+      <div class="btns">
+        <a class="btn btn-primary chamfer" href="#lab">เปิด Python Lab
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <ul class="lab-feats">
+      <li><span class="mono">01</span><div><h3>รันได้ทันที</h3><p>ใช้ Python 3 ตัวจริงที่ทำงานในเบราว์เซอร์ ได้ทั้งคอมในห้องเรียนและมือถือ</p></div></li>
+      <li><span class="mono">02</span><div><h3>รับค่า input() ได้</h3><p>พิมพ์ค่าตอบโปรแกรมได้ในช่อง OUTPUT เหมือนรันในเครื่อง เจอ error มีคำใบ้ภาษาไทยช่วย</p></div></li>
+      <li><span class="mono">03</span><div><h3>ส่งงานในคลิกเดียว</h3><p>เลือกโจทย์ ใส่รหัสส่งงานของตัวเอง แล้วกดส่ง โค้ดพร้อมผลลัพธ์จะถูกส่งถึงครู</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="mission" class="block">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <span class="kicker mono">[ 04 ] MISSION LOG</span>
+      <h2>ภารกิจตลอดภาคเรียน</h2>
+    </div>
+    <ol class="steps" id="steps"></ol>
+  </div>
+</section>
+
+<section id="join" style="padding:0 0 112px">
+  <div class="wrap">
+    <div class="join">
+      <div class="join-text">
+        <span class="kicker mono">&gt; ACCESS_REQUEST</span>
+        <h2 style="font-size:clamp(30px,4vw,48px);line-height:1.2" data-t="หัวข้อรับสมัคร"></h2>
+        <p class="sec-p" data-t="ข้อความรับสมัคร"></p>
+        <div class="mono" style="display:flex;flex-wrap:wrap;gap:8px 28px;font-size:13px;color:var(--dim)">
+          <span>ครูที่ปรึกษา: <span data-t="ครูที่ปรึกษา"></span></span>
+          <span>รับจำนวน: <span data-t="รับจำนวน"></span></span>
+        </div>
+      </div>
+      <div class="join-btns">
+        <a class="btn btn-primary" id="link-contact" href="#" style="min-height:56px;font-size:18px">ติดต่อทางกลุ่มชุมนุม
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot mono">
+    <span>© <span id="year"></span> <span id="brand2"></span> · <span data-t="ชื่อชุมนุม_ไทย"></span> <span data-t="ชื่อโรงเรียน"></span></span>
+    <span>&lt;/&gt; built with curiosity<span class="blink" style="color:var(--h)">_</span></span>
+  </div>
+</footer>
+</div>
+
+<!-- ===== Python Lab window ===== -->
+<div class="lab" id="lab" role="dialog" aria-modal="true" aria-labelledby="lab-title" hidden>
+  <div class="lab-win">
+    <div class="lab-bar">
+      <span class="dots" aria-hidden="true"><i style="background:var(--h)"></i><i style="background:#F5E50A"></i><i style="background:var(--a)"></i></span>
+      <h2 class="lab-title mono" id="lab-title">PYTHON_LAB<span> // ห้องเขียนโค้ด</span></h2>
+      <p class="lab-status mono" id="lab-status" data-s="idle" aria-live="polite"><i aria-hidden="true"></i><span id="lab-status-text">ยังไม่เริ่ม</span></p>
+      <button type="button" class="icon-btn" id="lab-close" aria-label="ปิดห้องเขียนโค้ด"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="lab-tools">
+      <label class="lab-pick"><span class="sr-only">เลือกโจทย์</span><select id="lab-task"></select></label>
+      <div class="lab-btns">
+        <button type="button" class="lbtn lbtn-run" id="lab-run"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9-15 9z" fill="currentColor"/></svg>รัน</button>
+        <button type="button" class="lbtn lbtn-stop" id="lab-stop" disabled><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" fill="currentColor"/></svg>หยุด</button>
+        <button type="button" class="lbtn" id="lab-clear">ล้างหน้าจอ</button>
+        <button type="button" class="lbtn" id="lab-save"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>บันทึก .py</button>
+        <button type="button" class="lbtn lbtn-send" id="lab-send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 3L3 10.5l7 3 3 7z"/><path d="M10 13.5L21 3"/></svg>ส่งงาน</button>
+      </div>
+    </div>
+    <div class="lab-brief">
+      <p id="lab-brief-text"></p>
+      <span class="lab-sent mono" id="lab-sent" hidden></span>
+      <button type="button" class="lab-link" id="lab-reset">เริ่มโค้ดใหม่</button>
+    </div>
+    <div class="lab-main">
+      <section class="pane" aria-label="ช่องเขียนโค้ด">
+        <div class="pane-head mono"><span>main.py</span><span class="key-hint">Ctrl + Enter = รัน</span></div>
+        <div class="ed" id="ed">
+          <div class="ed-doc" id="ed-doc">
+            <div class="ed-hl" id="ed-hl" aria-hidden="true"></div>
+            <textarea class="ed-ta" id="ed-ta" wrap="off" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="ช่องเขียนโค้ด Python" aria-describedby="ed-help"></textarea>
+          </div>
+        </div>
+        <p class="sr-only" id="ed-help">กด Tab เพื่อย่อหน้า กด Esc แล้วตามด้วย Tab เพื่อออกจากช่องเขียนโค้ด กด Ctrl และ Enter เพื่อรัน</p>
+      </section>
+      <section class="pane" aria-label="ผลลัพธ์">
+        <div class="pane-head mono"><span>OUTPUT</span></div>
+        <div class="con" id="con" role="log" aria-live="polite"><pre class="con-out" id="con-out"></pre><span class="con-in" id="con-in" hidden><input type="text" class="con-field" id="con-field" autocomplete="off" spellcheck="false" aria-label="พิมพ์ค่าที่โปรแกรมขอ แล้วกด Enter"></span></div>
+      </section>
+    </div>
+
+    <div class="sheet" id="sheet" hidden>
+      <form class="sheet-card" id="sheet-form" novalidate aria-labelledby="sheet-title">
+        <div class="sheet-head">
+          <p class="kicker mono">[ SUBMIT ]</p>
+          <h3 id="sheet-title">ส่งงาน</h3>
+          <p class="sheet-task mono" id="sheet-task"></p>
+        </div>
+        <div class="fld-group" id="fields-online">
+          <div class="fld-row">
+            <label class="fld"><span>เลขประจำตัวนักเรียน</span><input id="f-sid" inputmode="numeric" autocomplete="off"></label>
+            <label class="fld"><span>รหัสส่งงาน</span><input id="f-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="20"></label>
+          </div>
+          <p class="sheet-hint">รหัสส่งงานเป็นรหัสส่วนตัวที่ครูให้ ห้ามบอกเพื่อน ระบบจะใส่ชื่อ ชั้น และเลขที่ให้เองจากรายชื่อของครู</p>
+        </div>
+        <div class="fld-group" id="fields-offline">
+          <label class="fld"><span>ชื่อ-นามสกุล</span><input id="f-name" autocomplete="name"></label>
+          <div class="fld-row">
+            <label class="fld"><span>ชั้น/ห้อง</span><input id="f-room" placeholder="เช่น ม.4/1"></label>
+            <label class="fld fld-no"><span>เลขที่</span><input id="f-no" inputmode="numeric"></label>
+          </div>
+          <p class="sheet-prefill" id="sheet-prefill" hidden>เครื่องนี้จำชื่อจากการส่งครั้งก่อนไว้ ถ้าไม่ใช่ชื่อของคุณ ให้แก้ก่อนส่ง</p>
+        </div>
+        <p class="sheet-note" id="sheet-note"></p>
+        <p class="sheet-mode" id="sheet-mode"></p>
+        <p class="sheet-msg" id="sheet-msg" role="status" aria-live="polite"></p>
+        <div class="sheet-btns">
+          <button type="button" class="lbtn" id="sheet-cancel">ปิด</button>
+          <button type="submit" class="lbtn lbtn-run" id="sheet-ok">ยืนยันส่งงาน</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Python ที่รันอยู่เบื้องหลัง Python Lab (ไม่ต้องแก้) -->
+<script type="text/x-python" id="neon-boot">
+# NEON_CODE Python Lab runtime: runs inside Pyodide (in a Web Worker)
+import ast, sys, builtins, traceback, linecache, inspect, json
+import time as _time
+import js
+
+_FILE = "main.py"
+
+
+class _Stream:
+    encoding = "utf-8"
+    errors = "strict"
+
+    def __init__(self, kind):
+        self._kind = kind
+
+    def write(self, s):
+        s = str(s)
+        if s:
+            js.neonWrite(self._kind, s)
+        return len(s)
+
+    def writelines(self, lines):
+        for line in lines:
+            self.write(line)
+
+    def flush(self):
+        js.neonFlush()
+
+    def isatty(self):
+        return False
+
+    def writable(self):
+        return True
+
+    def readable(self):
+        return False
+
+
+_OUT = _Stream("out")
+_ERR = _Stream("err")
+sys.stdout = _OUT
+sys.stderr = _ERR
+
+
+async def _ainput(prompt=""):
+    prompt = str(prompt)
+    if prompt:
+        sys.stdout.write(prompt)
+    sys.stdout.flush()
+    value = await js.neonAsk()
+    return str(value)
+
+
+def _input_blocked(prompt=""):
+    raise RuntimeError(
+        "ใช้ input() ตรงนี้ไม่ได้ (เช่น ใน lambda หรือ generator) "
+        "ลองย้าย input() ไปไว้ในฟังก์ชันปกติหรือนอกฟังก์ชัน"
+    )
+
+
+builtins.input = _input_blocked
+
+
+async def _maybe(value):
+    if inspect.isawaitable(value):
+        return await value
+    return value
+
+
+def _sleep(secs):
+    secs = float(secs)
+    if secs < 0:
+        raise ValueError("sleep length must be non-negative")
+    sys.stdout.flush()
+    end = _time.monotonic() + secs
+    while _time.monotonic() < end:
+        pass
+
+
+_time.sleep = _sleep
+
+# ---------- rewrite input() so it can wait for the console ----------
+
+_SCOPES = (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda, ast.ClassDef)
+
+
+def _own_nodes(nodes):
+    stack = list(nodes)
+    while stack:
+        node = stack.pop()
+        yield node
+        if isinstance(node, _SCOPES):
+            continue
+        stack.extend(ast.iter_child_nodes(node))
+
+
+def _call_name(call):
+    f = call.func
+    if isinstance(f, ast.Name):
+        return f.id
+    if isinstance(f, ast.Attribute):
+        return f.attr
+    return None
+
+
+def _plan(tree):
+    info = {}
+    for fn in ast.walk(tree):
+        if isinstance(fn, ast.FunctionDef):
+            own = list(_own_nodes(fn.body))
+            gen = any(isinstance(x, (ast.Yield, ast.YieldFrom)) for x in own)
+            calls = {_call_name(x) for x in own if isinstance(x, ast.Call)}
+            calls.discard(None)
+            info[fn] = (gen, calls)
+    names = {"input"}
+    marked = set()
+    changed = True
+    while changed:
+        changed = False
+        for fn, (gen, calls) in info.items():
+            if fn in marked or gen:
+                continue
+            if calls & names:
+                marked.add(fn)
+                names.add(fn.name)
+                changed = True
+    names.discard("input")
+    return marked, names
+
+
+class _Rewrite(ast.NodeTransformer):
+    def __init__(self, marked, names):
+        self.marked = marked
+        self.names = names
+        self.can_await = [True]
+
+    def _scope(self, node, ok):
+        self.can_await.append(ok)
+        try:
+            self.generic_visit(node)
+        finally:
+            self.can_await.pop()
+        return node
+
+    def visit_FunctionDef(self, node):
+        if node in self.marked:
+            self._scope(node, True)
+            new = ast.AsyncFunctionDef(**{f: getattr(node, f, None) for f in node._fields})
+            return ast.copy_location(new, node)
+        return self._scope(node, False)
+
+    def visit_AsyncFunctionDef(self, node):
+        return self._scope(node, True)
+
+    def visit_Lambda(self, node):
+        return self._scope(node, False)
+
+    def visit_ClassDef(self, node):
+        return self._scope(node, False)
+
+    def visit_GeneratorExp(self, node):
+        self.generic_visit(node)
+        if self.can_await[-1] and any(isinstance(x, ast.Await) for x in ast.walk(node)):
+            return ast.copy_location(ast.ListComp(elt=node.elt, generators=node.generators), node)
+        return node
+
+    def visit_Call(self, node):
+        self.generic_visit(node)
+        if not self.can_await[-1]:
+            return node
+        f = node.func
+        if isinstance(f, ast.Name) and f.id == "input":
+            f.id = "__neon_input__"
+            return ast.copy_location(ast.Await(value=node), node)
+        name = _call_name(node)
+        if name in self.names:
+            wrap = ast.Call(func=ast.Name(id="__neon_maybe__", ctx=ast.Load()), args=[node], keywords=[])
+            ast.copy_location(wrap.func, node)
+            ast.copy_location(wrap, node)
+            return ast.copy_location(ast.Await(value=wrap), node)
+        return node
+
+
+# ---------- friendly Thai hints ----------
+
+def _hint(exc):
+    name = type(exc).__name__
+    low = str(exc).lower()
+    if isinstance(exc, SyntaxError):
+        if "unterminated string" in low or "unterminated triple-quoted" in low:
+            return 'ลืมปิดเครื่องหมายคำพูด " " ให้ครบคู่'
+        if "was never closed" in low:
+            return "ลืมปิดวงเล็บ ลองนับวงเล็บเปิดกับวงเล็บปิดให้เท่ากัน"
+        if "unmatched" in low or "does not match opening" in low:
+            return "วงเล็บเปิดกับปิดไม่ตรงกัน ลองนับให้เท่ากัน"
+        if "invalid character" in low or "non-printable" in low:
+            return 'มีตัวอักษรแปลกปนอยู่ เช่น เครื่องหมายคำพูดแบบ “ ” ที่ก๊อปมาจากเอกสาร ให้ลบแล้วพิมพ์ " ใหม่เอง'
+        if "expected an indented block" in low:
+            return "บรรทัดหลังเครื่องหมาย : ต้องย่อหน้าเข้าไป (กดปุ่ม Tab)"
+        if "unexpected indent" in low:
+            return "บรรทัดนี้ย่อหน้าเกินมา ลองลบช่องว่างหน้าบรรทัด"
+        if "unindent does not match" in low or "inconsistent use of tabs" in low:
+            return "ย่อหน้าไม่ตรงกับบรรทัดก่อนหน้า ลองจัดให้เว้นเท่ากัน"
+        if "expected ':'" in low:
+            return "ท้ายบรรทัด if / elif / else / for / while / def ต้องมีเครื่องหมาย :"
+        if "'await' outside" in low:
+            return "ใช้ input() ตรงนี้ไม่ได้ ลองย้าย input() ไปไว้ในฟังก์ชันปกติหรือนอกฟังก์ชัน"
+        return "รูปแบบคำสั่งผิด ลองดูบรรทัดที่ลูกศร ^ ชี้ และบรรทัดก่อนหน้า"
+    if name == "NameError":
+        return 'ไม่รู้จักชื่อนี้ ลองเช็กว่าสะกดถูกไหม ตัวพิมพ์เล็ก-ใหญ่ตรงกันไหม หรือถ้าเป็นข้อความต้องใส่ " " ครอบ'
+    if name == "TypeError":
+        if "concatenate" in low:
+            return "เอาข้อความ (str) ไปต่อกับตัวเลขตรง ๆ ไม่ได้ ลองแปลงชนิดด้วย int(), float() หรือ str()"
+        if "unsupported operand" in low:
+            return "ชนิดข้อมูลไม่เข้ากัน เช่น ข้อความกับตัวเลข ลองแปลงด้วย int() หรือ float() ก่อนคำนวณ"
+        if "not callable" in low:
+            return "เรียกใช้สิ่งที่ไม่ใช่ฟังก์ชัน อาจตั้งชื่อตัวแปรซ้ำกับชื่อคำสั่ง"
+        if "argument" in low:
+            return "จำนวนหรือชนิดของค่าที่ส่งให้ฟังก์ชันไม่ถูกต้อง"
+        return "ชนิดข้อมูลไม่ถูกต้องสำหรับคำสั่งนี้"
+    if name == "ValueError":
+        if "invalid literal for int()" in low:
+            return "ค่าที่ได้ไม่ใช่จำนวนเต็ม ถ้ามีทศนิยมให้ใช้ float() แทน int()"
+        if "could not convert string to float" in low:
+            return "ค่าที่ได้ไม่ใช่ตัวเลข ลองป้อนใหม่เป็นตัวเลข"
+        return "ค่าที่ใช้ไม่ถูกต้องสำหรับคำสั่งนี้"
+    if name == "ZeroDivisionError":
+        return "หารด้วยศูนย์ไม่ได้ ลองเช็กค่าตัวหารก่อน"
+    if name == "IndexError":
+        return "เรียกลำดับที่เกินจำนวนสมาชิก (อย่าลืมว่าลำดับเริ่มนับจาก 0)"
+    if name == "KeyError":
+        return "ไม่มี key นี้ใน dictionary"
+    if name == "AttributeError":
+        return "ข้อมูลชนิดนี้ไม่มีคำสั่งชื่อนี้ ลองเช็กการสะกด"
+    if name in ("ModuleNotFoundError", "ImportError"):
+        return "ห้องเขียนโค้ดบนเว็บไม่มีโมดูลนี้ ใช้ได้เฉพาะโมดูลพื้นฐาน เช่น math, random, time"
+    if name == "RecursionError":
+        return "ฟังก์ชันเรียกตัวเองซ้ำไม่รู้จบ ลองเพิ่มเงื่อนไขให้หยุด"
+    if name == "RuntimeError" and "input()" in low:
+        return ""
+    return ""
+
+
+def _report(exc):
+    frames = [f for f in traceback.extract_tb(exc.__traceback__) if f.filename == _FILE]
+    out = []
+    line = None
+    if frames:
+        out.append("Traceback (most recent call last):\n")
+        out.extend(traceback.format_list(frames))
+        line = frames[-1].lineno
+    if isinstance(exc, SyntaxError) and exc.filename == _FILE and exc.lineno:
+        line = exc.lineno
+    try:
+        te = traceback.TracebackException(type(exc), exc, exc.__traceback__, compact=True)
+        out.extend(te.format_exception_only())
+    except Exception:
+        out.extend(traceback.format_exception_only(type(exc), exc))
+    sys.stderr.write("".join(out))
+    hint = _hint(exc)
+    if hint:
+        js.neonWrite("hint", "[คำใบ้] " + hint + "\n")
+    return line
+
+
+def _compile(src):
+    tree = ast.parse(src, _FILE)
+    try:
+        marked, names = _plan(tree)
+        new = _Rewrite(marked, names).visit(tree)
+        ast.fix_missing_locations(new)
+        return compile(new, _FILE, "exec", flags=ast.PyCF_ALLOW_TOP_LEVEL_AWAIT, dont_inherit=True)
+    except SyntaxError:
+        # the rewrite could not be compiled: fall back to the plain program
+        return compile(ast.parse(src, _FILE), _FILE, "exec", dont_inherit=True)
+
+
+async def __neon_run__(src):
+    src = str(src)
+    sys.stdout = _OUT
+    sys.stderr = _ERR
+    linecache.cache[_FILE] = (len(src), None, src.splitlines(True), _FILE)
+    t0 = _time.monotonic()
+    try:
+        code = _compile(src)
+    except SyntaxError as exc:
+        return json.dumps({"ok": False, "line": _report(exc), "t": 0})
+    scope = {
+        "__name__": "__main__",
+        "__builtins__": builtins,
+        "__neon_input__": _ainput,
+        "__neon_maybe__": _maybe,
+    }
+    try:
+        result = eval(code, scope)
+        if inspect.iscoroutine(result):
+            await result
+    except SystemExit:
+        pass
+    except BaseException as exc:
+        line = _report(exc)
+        sys.stdout.flush()
+        return json.dumps({"ok": False, "line": line, "t": round(_time.monotonic() - t0, 2)})
+    sys.stdout.flush()
+    return json.dumps({"ok": True, "t": round(_time.monotonic() - t0, 2)})
+</script>
+<script type="text/x-neon-worker" id="neon-worker">
+/* NEON_CODE Python Lab worker: loads Pyodide and runs one program at a time */
+var py = null, segs = [], pending = 0, lastPost = 0, timer = 0, total = 0, flooded = false, askResolve = null;
+var LIMIT = 400000;
+
+function flushOut() {
+  if (timer) { clearTimeout(timer); timer = 0; }
+  if (segs.length) { postMessage({ t: 'out', segs: segs }); segs = []; pending = 0; }
+  lastPost = Date.now();
+}
+
+self.neonWrite = function (kind, s) {
+  if (flooded) return;
+  total += s.length;
+  if (total > LIMIT) { flooded = true; flushOut(); postMessage({ t: 'flood' }); return; }
+  var last = segs[segs.length - 1];
+  if (last && last[0] === kind) last[1] += s; else segs.push([kind, s]);
+  pending += s.length;
+  var now = Date.now();
+  if (pending > 8192 || now - lastPost > 50) flushOut();
+  else if (!timer) timer = setTimeout(flushOut, 50);
+};
+
+self.neonFlush = flushOut;
+
+self.neonAsk = function () {
+  return new Promise(function (resolve) {
+    askResolve = resolve;
+    flushOut();
+    postMessage({ t: 'ask' });
+  });
+};
+
+self.onmessage = async function (e) {
+  var m = e.data || {};
+  if (m.t === 'init') {
+    var err = null;
+    for (var i = 0; i < m.urls.length && !py; i++) {
+      try {
+        if (typeof loadPyodide !== 'function') importScripts(m.urls[i] + 'pyodide.js');
+        py = await loadPyodide({ indexURL: m.urls[i] });
+      } catch (x) { err = x; py = null; }
+    }
+    if (!py) { postMessage({ t: 'fatal', s: String((err && err.message) || err) }); return; }
+    try {
+      py.setStdin({ error: true });
+      py.runPython(m.boot);
+      postMessage({ t: 'ready', ver: py.runPython('import sys; sys.version.split()[0]') });
+    } catch (x) { postMessage({ t: 'fatal', s: String((x && x.message) || x) }); }
+  } else if (m.t === 'run') {
+    total = 0; flooded = false;
+    var res;
+    try {
+      py.globals.set('__neon_src__', m.code);
+      res = await py.runPythonAsync('await __neon_run__(__neon_src__)');
+    } catch (x) {
+      flushOut();
+      postMessage({ t: 'done', ok: false, internal: String((x && x.message) || x) });
+      return;
+    }
+    flushOut();
+    var r = {};
+    try { r = JSON.parse(res); } catch (_) {}
+    postMessage({ t: 'done', ok: !!r.ok, line: r.line || 0, secs: r.t });
+  } else if (m.t === 'answer') {
+    var f = askResolve; askResolve = null;
+    if (f) f(String(m.v));
+  }
+};
+</script>
+
+<script>
+(function () {
+  const C = CONFIG;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+  // สี
+  const root = document.documentElement.style;
+  root.setProperty('--a', C.สีหลัก); root.setProperty('--a-dim', C.สีหลัก + '44');
+  root.setProperty('--h', C.สีรอง);  root.setProperty('--h-dim', C.สีรอง + '55');
+
+  // ข้อความทั่วไป
+  document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = C[el.dataset.t] ?? ''; });
+  const real = (v) => (v && !/^\[.*\]$/.test(String(v).trim()) ? String(v).trim() : '');
+  document.title = [C.ชื่อชุมนุม_ไทย, real(C.ชื่อโรงเรียน)].filter(Boolean).join(' ') + ' | ' + C.ชื่อชุมนุม_อังกฤษ;
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc && C.คำโปรย) desc.setAttribute('content', C.คำโปรย);
+  $('year').textContent = new Date().getFullYear();
+  $('brand2').textContent = C.ชื่อชุมนุม_อังกฤษ;
+  const b = C.ชื่อชุมนุม_อังกฤษ, i = b.indexOf('_');
+  $('brand').innerHTML = i > -1 ? esc(b.slice(0, i)) + '<span style="color:var(--h)">_</span>' + esc(b.slice(i + 1)) : esc(b);
+  $('link-contact').href = C.ลิงก์ติดต่อ;
+
+  // ตัววิ่ง
+  const m = C.ตัววิ่ง.join(' /// ') + ' /// ';
+  $('marquee').textContent = m + m;
+
+  // บทเรียน
+  const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+  function showLevel(n) {
+    $('tabs').innerHTML = C.เลเวล.map((lv, k) =>
+      `<button type="button" class="tab" role="tab" aria-selected="${k === n}" data-k="${k}">${esc(lv.ชื่อ)}</button>`).join('');
+    $('lesson-grid').innerHTML = C.เลเวล[n].บทเรียน.map((x) => `
+      <article class="lesson">
+        <div class="lesson-head"><span class="lesson-no mono">${esc(x.เลขบท)}</span><span class="tag mono">${esc(x.ป้าย)}</span></div>
+        <h3>${esc(x.ชื่อบท)}</h3>
+        <p>${esc(x.รายละเอียด)}</p>
+        <a class="more mono" href="${esc(x.ลิงก์ || '#')}" target="${x.ลิงก์ && x.ลิงก์ !== '#' ? '_blank' : '_self'}" rel="noopener">&gt; เปิดบทเรียน ${arrow}</a>
+      </article>`).join('');
+  }
+  $('tabs').addEventListener('click', (e) => {
+    const t = e.target.closest('[data-k]');
+    if (t) showLevel(+t.dataset.k);
+  });
+  showLevel(0);
+
+  // สื่อการสอน
+  const icons = {
+    slide: '<rect x="3" y="4" width="18" height="12"/><path d="M8 20h8M12 16v4"/>',
+    sheet: '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+    code:  '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>',
+    video: '<rect x="3" y="5" width="18" height="14"/><path d="M10 9l5 3-5 3z"/>',
+    book:  '<path d="M4 4h7a3 3 0 013 3v13a2 2 0 00-2-2H4zM20 4h-7a3 3 0 00-3 3"/><path d="M20 4v14h-8"/>',
+    game:  '<rect x="2" y="7" width="20" height="10" rx="1"/><path d="M7 10v4M5 12h4M15 11h.01M18 13h.01"/>',
+  };
+  $('mat-grid').innerHTML = C.สื่อการสอน.map((x) => `
+    <div class="mat">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.6" aria-hidden="true">${icons[x.ไอคอน] || icons.book}</svg>
+      <h3>${esc(x.ชื่อ)}</h3>
+      <p>${esc(x.รายละเอียด)}</p>
+      <a class="more mono" href="${esc(x.ลิงก์ || '#')}" target="${x.ลิงก์ && x.ลิงก์ !== '#' ? '_blank' : '_self'}" rel="noopener">[ ${esc(x.ปุ่ม)} ]</a>
+    </div>`).join('');
+
+  // ภารกิจ
+  $('steps').innerHTML = C.ภารกิจ.map((x) => `
+    <li class="step"><span class="mono">${esc(x.ขั้น)}</span><h3>${esc(x.ชื่อ)}</h3><p>${esc(x.รายละเอียด)}</p></li>`).join('');
+})();
+</script>
+
+<script>
+/* ===== Python Lab: ห้องเขียนโค้ดบนเว็บ (ไม่ต้องแก้ ตั้งค่าได้ในส่วน CONFIG ด้านบน) ===== */
+(function () {
+  const C = CONFIG;
+  const $ = (id) => document.getElementById(id);
+  const PYODIDE_URLS = [
+    'https://cdn.jsdelivr.net/npm/pyodide@0.29.5/',
+    'https://cdn.jsdelivr.net/pyodide/v0.29.5/full/',
+    'https://unpkg.com/pyodide@0.29.5/',
+  ];
+  const KEEP = 20000;   // ตัวอักษรของผลลัพธ์ที่ส่งไปพร้อมงาน
+
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('neon.lab.' + k); return v === null ? d : JSON.parse(v); } catch (_) { return d; } },
+    set(k, v) { try { localStorage.setItem('neon.lab.' + k, JSON.stringify(v)); } catch (_) {} },
+  };
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const clock = (d) => (d || new Date()).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const fileBase = (...parts) => parts.map((p) => String(p).replace(/[^A-Za-z0-9._-]+/g, '-').replace(/-+/g, '-').replace(/^[-.]+|[-.]+$/g, '')).filter(Boolean).join('_') || 'main';
+
+  function dedent(s) {
+    const lines = String(s || '').replace(/\r\n?/g, '\n').replace(/^\n+/, '').replace(/\s+$/, '').split('\n');
+    const ind = Math.min(...lines.filter((l) => l.trim()).map((l) => l.match(/^ */)[0].length));
+    return lines.map((l) => l.slice(isFinite(ind) ? ind : 0)).join('\n') + '\n';
+  }
+
+  // ---------- โจทย์ ----------
+  const DEMO_CODE = [
+    '# โค้ดเดียวกับหน้าแรก แต่ถามชื่อคุณก่อน',
+    '# กด รัน แล้วพิมพ์ชื่อในช่อง OUTPUT จากนั้นกด Enter',
+    'def hack_the_future(name):',
+    '    skills = ["logic", "code", "create"]',
+    '    for s in skills:',
+    '        print(f"[+] {name} unlocked: {s}")',
+    '',
+    'hack_the_future(input("ใส่ชื่อของคุณ: "))',
+    '',
+  ].join('\n');
+  const FREE_CODE = '# พื้นที่ทดลอง: เขียนอะไรก็ได้ แล้วกด รัน (หรือ Ctrl + Enter)\nprint("สวัสดีชาวโลก")\n';
+  const tasks = [
+    { id: 'demo', name: 'ตัวอย่างจากหน้าแรก', brief: 'โค้ดเดียวกับหน้าจอบนหน้าแรก กดรัน แล้วพิมพ์ชื่อของคุณในช่อง OUTPUT (ตัวอย่างนี้ไม่ต้องส่งงาน)', code: DEMO_CODE, send: false, group: 'try' },
+    { id: 'free', name: 'เขียนอิสระ', brief: 'พื้นที่ทดลองเขียนโค้ดอะไรก็ได้ โค้ดจะถูกจำไว้ในเครื่องนี้อัตโนมัติ', code: FREE_CODE, send: true, group: 'try' },
+  ];
+  (Array.isArray(C.โจทย์ส่งงาน) ? C.โจทย์ส่งงาน : []).forEach((x, i) => {
+    if (!x) return;
+    const id = String(x.รหัส || 'task-' + (i + 1)).trim();
+    if (tasks.some((t) => t.id === id)) return;
+    tasks.push({ id, name: String(x.ชื่อ || id), brief: String(x.โจทย์ || ''), code: dedent(x.โค้ดเริ่มต้น), send: true, group: 'hw' });
+  });
+
+  // ---------- elements ----------
+  const lab = $('lab'), site = $('site');
+  const ed = $('ed'), edDoc = $('ed-doc'), hl = $('ed-hl'), ta = $('ed-ta');
+  const con = $('con'), conOut = $('con-out'), conIn = $('con-in'), conField = $('con-field');
+  const statusEl = $('lab-status'), statusText = $('lab-status-text');
+  const taskSel = $('lab-task'), briefText = $('lab-brief-text'), sentBadge = $('lab-sent'), resetBtn = $('lab-reset');
+  const runBtn = $('lab-run'), stopBtn = $('lab-stop'), sendBtn = $('lab-send');
+  const sheet = $('sheet'), form = $('sheet-form'), sheetOk = $('sheet-ok'), sheetMsg = $('sheet-msg');
+  const fName = $('f-name'), fRoom = $('f-room'), fNo = $('f-no'), fSid = $('f-sid'), fPin = $('f-pin');
+
+  // ---------- syntax highlight ----------
+  const KW = new Set('False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield match case'.split(' '));
+  const BI = new Set('print input int float str bool len range list dict set tuple type abs min max sum round sorted reversed enumerate zip map filter any all isinstance open ord chr pow divmod format repr super object exit quit'.split(' '));
+  const TOK = /(#[^\n]*)|((?:[rRbBfFuU]{1,2})?(?:"""[\s\S]*?(?:"""|$)|'''[\s\S]*?(?:'''|$)|"(?:\\.|[^"\\\n])*"?|'(?:\\.|[^'\\\n])*'?))|(\b\d[\d_]*(?:\.\d*)?(?:[eE][+-]?\d+)?j?\b)|([A-Za-z_]\w*)|(@[A-Za-z_][\w.]*)/g;
+
+  function rows(src) {
+    const out = [[]];
+    const push = (cls, text) => {
+      text.split('\n').forEach((p, k) => {
+        if (k) out.push([]);
+        if (p) out[out.length - 1].push(cls ? '<span class="t' + cls + '">' + esc(p) + '</span>' : esc(p));
+      });
+    };
+    let last = 0, prev = '', mm;
+    TOK.lastIndex = 0;
+    while ((mm = TOK.exec(src))) {
+      if (mm.index > last) push('', src.slice(last, mm.index));
+      const t = mm[0];
+      let cls = '';
+      if (mm[1]) cls = 'c';
+      else if (mm[2]) cls = 's';
+      else if (mm[3]) cls = 'n';
+      else if (mm[5]) cls = 'd';
+      else if (mm[4]) cls = KW.has(t) ? 'k' : (prev === 'def' || prev === 'class') ? 'f' : BI.has(t) ? 'b' : '';
+      prev = mm[4] ? t : '';
+      push(cls, t);
+      last = mm.index + t.length;
+    }
+    if (last < src.length) push('', src.slice(last));
+    return out;
+  }
+
+  let errLine = 0;
+  function render() {
+    const rs = rows(ta.value);
+    let html = '';
+    for (let k = 0; k < rs.length; k++) {
+      html += '<div class="r' + (k + 1 === errLine ? ' err' : '') + '"><span class="g">' + (k + 1) + '</span><span class="c">' + rs[k].join('') + '</span></div>';
+    }
+    hl.innerHTML = html;
+    ta.scrollTop = 0; ta.scrollLeft = 0;
+  }
+  function markError(line) {
+    errLine = line || 0;
+    render();
+    if (errLine) {
+      const r = hl.children[errLine - 1];
+      if (r) {
+        const top = r.offsetTop, h = r.offsetHeight;
+        if (top < ed.scrollTop || top + h > ed.scrollTop + ed.clientHeight) ed.scrollTop = Math.max(0, top - ed.clientHeight / 3);
+      }
+    }
+  }
+
+  // ---------- editor keys ----------
+  function insert(text) {
+    if (!document.execCommand('insertText', false, text)) {
+      ta.setRangeText(text, ta.selectionStart, ta.selectionEnd, 'end');
+      ta.dispatchEvent(new Event('input'));
+    }
+  }
+  function removeBefore(n) {
+    const s = ta.selectionStart;
+    ta.setSelectionRange(s - n, s);
+    if (!document.execCommand('delete')) {
+      ta.setRangeText('', s - n, s, 'end');
+      ta.dispatchEvent(new Event('input'));
+    }
+  }
+  const lineStart = (v, at) => v.lastIndexOf('\n', at - 1) + 1;
+  function indent(outdent) {
+    const v = ta.value, s = ta.selectionStart, en = ta.selectionEnd;
+    const ls = lineStart(v, s);
+    if (s === en && !outdent) { insert(' '.repeat(4 - ((s - ls) % 4))); return; }
+    let le = v.indexOf('\n', en > s && v[en - 1] === '\n' ? en - 1 : en);
+    if (le < 0) le = v.length;
+    const block = v.slice(ls, le);
+    let first = 0;
+    const changed = block.split('\n').map((l, k) => {
+      if (outdent) {
+        const mm = l.match(/^( {1,4}|\t)/);
+        const d = mm ? mm[0].length : 0;
+        if (!k) first = -d;
+        return l.slice(d);
+      }
+      if (!k) first = 4;
+      return '    ' + l;
+    }).join('\n');
+    if (changed === block) return;
+    ta.setSelectionRange(ls, le);
+    insert(changed);
+    if (s === en) { const p = Math.max(ls, s + first); ta.setSelectionRange(p, p); }
+    else ta.setSelectionRange(ls, ls + changed.length);
+  }
+  let tabOut = false;
+  ta.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); run(); return; }
+    if (e.isComposing || e.keyCode === 229) return;
+    if (e.key === 'Escape') { tabOut = true; return; }
+    if (e.key === 'Tab') {
+      if (tabOut || e.ctrlKey || e.altKey || e.metaKey) { tabOut = false; return; }
+      e.preventDefault();
+      indent(e.shiftKey);
+      return;
+    }
+    tabOut = false;
+    const v = ta.value, s = ta.selectionStart, en = ta.selectionEnd;
+    if (e.key === 'Enter' && !e.shiftKey && !e.altKey && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      const line = v.slice(lineStart(v, s), s);
+      let ind = line.match(/^[ \t]*/)[0];
+      const t = line.trim();
+      if (!t.startsWith('#') && /:\s*(#.*)?$/.test(t)) ind += '    ';
+      else if (/^(return\b|pass$|break$|continue$|raise\b)/.test(t)) ind = ind.slice(0, Math.max(0, ind.length - 4));
+      insert('\n' + ind);
+      return;
+    }
+    if (e.key === 'Backspace' && s === en && s > 0) {
+      const before = v.slice(lineStart(v, s), s);
+      if (before.length >= 2 && /^ +$/.test(before)) {
+        e.preventDefault();
+        removeBefore(((before.length - 1) % 4) + 1);
+      }
+    }
+  });
+  let saveTimer = 0;
+  ta.addEventListener('input', () => {
+    errLine = 0;
+    render();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 400);
+  });
+  ta.addEventListener('scroll', () => { ta.scrollTop = 0; ta.scrollLeft = 0; });
+  ed.addEventListener('mousedown', (e) => {
+    if (e.target === ed || e.target === edDoc) {
+      e.preventDefault();
+      ta.focus();
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+    }
+  });
+
+  // ---------- tasks ----------
+  let cur = tasks[0];
+  const codeFor = (t) => { const c = store.get('code.' + t.id, null); return typeof c === 'string' ? c : t.code; };
+  function save() { clearTimeout(saveTimer); store.set('code.' + cur.id, ta.value); }
+  const sentSid = () => (onlineURL() ? String(store.get('sid', '') || '') : '');
+  const sentKey = () => 'sent.' + (sentSid() ? sentSid() + '.' : '') + cur.id;
+  function updateSent() {
+    const ts = store.get(sentKey(), 0);
+    sentBadge.hidden = !(ts && cur.send);
+    if (ts) sentBadge.textContent = 'ส่งแล้ว' + (sentSid() ? ' · ' + sentSid() : '') + ' · ' + new Date(ts).toLocaleString('th-TH', { dateStyle: 'short', timeStyle: 'short' });
+  }
+  function selectTask(id) {
+    const t = tasks.find((x) => x.id === id) || tasks[0];
+    if (t !== cur) save();
+    cur = t;
+    taskSel.value = t.id;
+    ta.value = codeFor(t);
+    errLine = 0;
+    render();
+    store.set('task', t.id);
+    briefText.textContent = t.brief;
+    sendBtn.disabled = !t.send;
+    sendBtn.title = t.send ? '' : 'ตัวอย่างนี้ไม่ต้องส่งงาน เลือกโจทย์จากเมนูก่อน';
+    updateSent();
+  }
+  {
+    const g1 = document.createElement('optgroup'); g1.label = 'ทดลองเขียน';
+    const g2 = document.createElement('optgroup'); g2.label = 'โจทย์ส่งงาน';
+    tasks.forEach((t) => (t.group === 'try' ? g1 : g2).appendChild(new Option(t.name, t.id)));
+    taskSel.appendChild(g1);
+    if (g2.children.length) taskSel.appendChild(g2);
+  }
+  taskSel.addEventListener('change', () => selectTask(taskSel.value));
+  let resetArmed = 0;
+  resetBtn.addEventListener('click', () => {
+    if (!resetArmed) {
+      resetBtn.textContent = 'กดอีกครั้งเพื่อยืนยัน';
+      resetArmed = setTimeout(() => { resetArmed = 0; resetBtn.textContent = 'เริ่มโค้ดใหม่'; }, 3000);
+      return;
+    }
+    clearTimeout(resetArmed); resetArmed = 0; resetBtn.textContent = 'เริ่มโค้ดใหม่';
+    ta.focus();
+    ta.select();
+    insert(cur.code);
+    ta.setSelectionRange(0, 0);
+    save();
+  });
+
+  // ---------- console ----------
+  let conLen = 0, lastChar = '', runLog = '';
+  function out(kind, text) {
+    if (!text) return;
+    if (kind !== 'sys' && kind !== 'hint' && runLog.length < KEEP) runLog += text.slice(0, KEEP - runLog.length);
+    const near = con.scrollHeight - con.scrollTop - con.clientHeight < 48;
+    let span = conOut.lastElementChild;
+    if (!span || span.dataset.k !== kind) {
+      span = document.createElement('span');
+      span.className = 'k-' + kind;
+      span.dataset.k = kind;
+      conOut.appendChild(span);
+    }
+    span.appendChild(document.createTextNode(text));
+    conLen += text.length;
+    lastChar = text.slice(-1);
+    while (conLen > 120000) {
+      const first = conOut.firstElementChild;
+      if (!first) break;
+      const node = first.firstChild;
+      if (!node) { first.remove(); continue; }
+      conLen -= node.textContent.length;
+      node.remove();
+      if (!first.firstChild) first.remove();
+    }
+    if (near) con.scrollTop = con.scrollHeight;
+  }
+  const sys = (text) => out('sys', text);
+  const newline = () => { if (lastChar && lastChar !== '\n') out('sys', '\n'); };
+  function clearConsole() { conOut.textContent = ''; conLen = 0; lastChar = ''; }
+  function showAsk() {
+    conIn.hidden = false;
+    conField.value = '';
+    con.scrollTop = con.scrollHeight;
+    conField.focus();
+  }
+  function hideAsk() { conIn.hidden = true; }
+  conField.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return;
+    e.preventDefault();
+    if (!waiting || !worker) return;
+    const v = conField.value;
+    hideAsk();
+    out('echo', v + '\n');
+    waiting = false;
+    setState('running');
+    worker.postMessage({ t: 'answer', v });
+  });
+  con.addEventListener('click', () => {
+    const sel = window.getSelection && window.getSelection();
+    if (waiting && (!sel || sel.isCollapsed)) conField.focus({ preventScroll: true });
+  });
+  $('lab-clear').addEventListener('click', () => { clearConsole(); if (waiting) showAsk(); });
+
+  // ---------- Python runtime (Web Worker) ----------
+  let worker = null, workerURL = '', ready = false, busy = false, waiting = false, pyVer = '';
+  let queued = null, queuedTask = '', runCode = '', runTask = '', runStart = 0, slowTimer = 0, loadTimer = 0, loadStart = 0;
+  const lastRun = {};
+
+  function setState(s) {
+    const text = {
+      idle: 'ยังไม่เริ่ม',
+      loading: 'กำลังโหลด Python… ' + Math.max(0, Math.round((Date.now() - loadStart) / 1000)) + ' วิ',
+      ready: 'พร้อม · Python ' + pyVer,
+      running: 'กำลังรัน…',
+      slow: 'กำลังรัน… ถ้าค้างให้กดหยุด',
+      waiting: 'รอรับค่า: พิมพ์แล้วกด Enter',
+      error: 'โหลดไม่สำเร็จ',
+    }[s] || '';
+    statusEl.dataset.s = s;
+    statusText.textContent = text;
+    stopBtn.disabled = !(busy || queued !== null);
+  }
+  function spawn() {
+    if (worker) return;
+    ready = false;
+    try {
+      workerURL = URL.createObjectURL(new Blob([$('neon-worker').textContent], { type: 'text/javascript' }));
+      worker = new Worker(workerURL);
+    } catch (err) {
+      worker = null;
+      setState('error');
+      newline();
+      sys('เบราว์เซอร์นี้เปิดตัวรัน Python ไม่ได้ ลองเปิดเว็บนี้ด้วย Chrome หรือ Edge เวอร์ชันใหม่\n');
+      return;
+    }
+    const w = worker;
+    w.onmessage = (e) => onMsg(w, e.data || {});
+    w.onerror = (e) => { if (e.preventDefault) e.preventDefault(); if (w === worker) fatal(e.message || 'worker error'); };
+    w.postMessage({ t: 'init', urls: PYODIDE_URLS, boot: $('neon-boot').textContent });
+    loadStart = Date.now();
+    setState('loading');
+    clearInterval(loadTimer);
+    loadTimer = setInterval(() => {
+      if (worker === w && !ready && statusEl.dataset.s === 'loading') setState('loading');
+      else clearInterval(loadTimer);
+    }, 1000);
+  }
+  function onMsg(w, msg) {
+    if (w !== worker) return;
+    if (msg.t === 'out') { msg.segs.forEach((sg) => out(sg[0], sg[1])); return; }
+    if (msg.t === 'ready') {
+      ready = true; pyVer = msg.ver || '';
+      URL.revokeObjectURL(workerURL);
+      clearInterval(loadTimer);
+      if (queued !== null) { const code = queued; queued = null; start(code, queuedTask); }
+      else setState('ready');
+      return;
+    }
+    if (msg.t === 'ask') { waiting = true; setState('waiting'); showAsk(); return; }
+    if (msg.t === 'flood') { kill('หยุดอัตโนมัติ: โปรแกรมแสดงผลออกมาเยอะเกินไป (อาจมีลูปที่ไม่มีวันจบ)', 'ถูกหยุดอัตโนมัติ'); return; }
+    if (msg.t === 'done') { finish(msg); return; }
+    if (msg.t === 'fatal') fatal(msg.s);
+  }
+  function record(status) {
+    if (runTask) lastRun[runTask] = { code: runCode, log: runLog, status, at: new Date() };
+  }
+  function start(code, taskId) {
+    busy = true; waiting = false;
+    runCode = code; runTask = taskId || cur.id; runLog = ''; runStart = Date.now();
+    worker.postMessage({ t: 'run', code });
+    setState('running');
+    clearTimeout(slowTimer);
+    slowTimer = setTimeout(() => { if (busy && !waiting) setState('slow'); }, 8000);
+  }
+  function finish(msg) {
+    busy = false; waiting = false; hideAsk(); clearTimeout(slowTimer);
+    if (msg.internal) {
+      newline();
+      sys('Python ขัดข้อง กำลังเริ่มใหม่… (' + String(msg.internal).split('\n').filter(Boolean).slice(-1)[0] + ')\n');
+      record('ระบบขัดข้อง');
+      kill(null);
+      return;
+    }
+    const secs = typeof msg.secs === 'number' ? msg.secs : (Date.now() - runStart) / 1000;
+    newline();
+    sys(msg.ok ? '─── จบโปรแกรม · ' + secs.toFixed(2) + ' วินาที ───\n' : '─── จบพร้อม error ───\n');
+    record(msg.ok ? 'สำเร็จ' : 'มี error');
+    if (!msg.ok && msg.line && runTask === cur.id && runCode === ta.value) markError(msg.line);
+    setState('ready');
+  }
+  function kill(note, status) {
+    const w = worker;
+    worker = null; ready = false;
+    try { if (w) w.terminate(); } catch (_) {}
+    hideAsk();
+    clearTimeout(slowTimer);
+    if (busy) record(status || 'ถูกหยุดกลางคัน');
+    busy = false; waiting = false; queued = null;
+    if (note) { newline(); sys('■ ' + note + '\n'); }
+    spawn();
+  }
+  function fatal(detail) {
+    const w = worker;
+    worker = null; ready = false;
+    try { if (w) w.terminate(); } catch (_) {}
+    clearInterval(loadTimer); clearTimeout(slowTimer);
+    hideAsk();
+    if (busy) record('ระบบขัดข้อง');
+    busy = false; waiting = false; queued = null;
+    setState('error');
+    newline();
+    sys('โหลด Python ไม่สำเร็จ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต แล้วกดรันอีกครั้ง\n(' + detail + ')\n');
+  }
+  function run() {
+    save();
+    markError(0);
+    const code = ta.value;
+    if (busy) kill(null);
+    clearConsole();
+    if (window.matchMedia('(max-width: 860px)').matches) con.closest('.pane').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    sys('─── รัน main.py · ' + clock() + ' ───\n');
+    if (ready && worker) { start(code, cur.id); return; }
+    queued = code; queuedTask = cur.id;
+    if (!worker) spawn();
+    sys('กำลังเตรียม Python… ครั้งแรกอาจใช้เวลา 10–30 วินาที\n');
+    setState(statusEl.dataset.s === 'error' ? 'error' : 'loading');
+  }
+  runBtn.addEventListener('click', run);
+  stopBtn.addEventListener('click', () => {
+    if (busy) kill('หยุดโปรแกรมแล้ว');
+    else if (queued !== null) { queued = null; newline(); sys('ยกเลิกการรันแล้ว\n'); setState(ready ? 'ready' : 'loading'); }
+  });
+
+  // ---------- save / submit ----------
+  function download(name, text) {
+    const url = URL.createObjectURL(new Blob([text], { type: 'text/x-python;charset=utf-8' }));
+    const a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }
+  $('lab-save').addEventListener('click', () => { save(); download(fileBase(cur.id) + '.py', ta.value); });
+
+  const onlineURL = () => { const u = String(C.ลิงก์ส่งงาน || '').trim(); return /^https?:\/\//i.test(u) ? u : ''; };
+  function runInfo() {
+    const lr = lastRun[cur.id];
+    const fresh = !!(lr && lr.code === ta.value);
+    return {
+      fresh,
+      status: fresh ? lr.status : 'ยังไม่ได้รัน',
+      output: fresh ? (lr.log || '(ไม่มีผลลัพธ์)') : '(ยังไม่ได้รันโค้ดเวอร์ชันนี้)',
+      at: fresh ? lr.at : null,
+    };
+  }
+  function msg(kind, text) { sheetMsg.dataset.kind = kind; sheetMsg.textContent = text; }
+  function openSheet() {
+    if (!cur.send) return;
+    save();
+    const online = onlineURL();
+    $('fields-online').hidden = !online;
+    $('fields-offline').hidden = !!online;
+    const st = store.get('student', {}) || {};
+    fName.value = st.name || ''; fRoom.value = st.room || ''; fNo.value = st.no || '';
+    $('sheet-prefill').hidden = !st.name;
+    fSid.value = store.get('sid', '') || '';
+    fPin.value = '';
+    $('sheet-task').textContent = 'โจทย์: ' + cur.name;
+    const info = runInfo();
+    const note = $('sheet-note');
+    note.textContent = info.fresh
+      ? 'จะส่งโค้ดพร้อมผลลัพธ์จากการรันล่าสุด (' + info.status + ' · ' + clock(info.at) + ')'
+      : 'ยังไม่ได้รันโค้ดเวอร์ชันนี้ แนะนำให้กดรันให้ผ่านก่อน (ส่งเลยก็ได้ ระบบจะส่งเฉพาะโค้ด)';
+    note.dataset.warn = info.fresh && info.status === 'สำเร็จ' ? '' : '1';
+    $('sheet-mode').textContent = online ? '' : 'ระบบส่งงานออนไลน์ยังไม่เปิด ปุ่มด้านล่างจะดาวน์โหลดไฟล์งาน ให้นำไปส่งครูตามช่องทางของชุมนุม';
+    sheetOk.textContent = online ? 'ยืนยันส่งงาน' : 'ดาวน์โหลดไฟล์งาน';
+    msg('', '');
+    sheet.hidden = false;
+    (online ? (!fSid.value ? fSid : fPin) : (!fName.value ? fName : !fRoom.value ? fRoom : !fNo.value ? fNo : sheetOk)).focus();
+  }
+  function closeSheet() { fPin.value = ''; sheet.hidden = true; sendBtn.focus(); }
+  function fileText(st, info) {
+    const head = [
+      '# โจทย์: ' + cur.name,
+      '# ชื่อ: ' + st.name,
+      '# ชั้น/ห้อง: ' + st.room + '   เลขที่: ' + st.no,
+      '# บันทึกเมื่อ: ' + new Date().toLocaleString('th-TH'),
+      '# สถานะการรัน: ' + info.status,
+      '',
+    ].join('\n');
+    const tail = '\n# ===== ผลลัพธ์ล่าสุด =====\n' + info.output.replace(/\n$/, '').split('\n').map((l) => '# ' + l).join('\n') + '\n';
+    return head + '\n' + ta.value.replace(/\s+$/, '') + '\n' + tail;
+  }
+  sendBtn.addEventListener('click', openSheet);
+  $('sheet-cancel').addEventListener('click', closeSheet);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const info = runInfo();
+    const url = onlineURL();
+    if (!url) {
+      const st = { name: fName.value.trim(), room: fRoom.value.trim(), no: fNo.value.trim() };
+      if (!st.name || !st.room || !st.no) {
+        msg('err', 'กรอกชื่อ-นามสกุล ชั้น/ห้อง และเลขที่ให้ครบก่อนนะ');
+        (!st.name ? fName : !st.room ? fRoom : fNo).focus();
+        return;
+      }
+      store.set('student', st);
+      download(fileBase(cur.id, st.room, st.no) + '.py', fileText(st, info));
+      msg('ok', 'ดาวน์โหลดไฟล์งานแล้ว นำไฟล์ไปส่งครูได้เลย');
+      return;
+    }
+    const sid = fSid.value.trim(), pin = fPin.value.trim();
+    if (!sid || !pin) {
+      msg('err', 'กรอกเลขประจำตัวนักเรียนและรหัสส่งงานให้ครบก่อนนะ');
+      (!sid ? fSid : fPin).focus();
+      return;
+    }
+    store.set('sid', sid);
+    sheetOk.disabled = true;
+    msg('', 'กำลังส่งงาน…');
+    try {
+      const body = new URLSearchParams({ sid, pin, taskId: cur.id, task: cur.name, status: info.status, code: ta.value, output: info.output });
+      const res = await fetch(url, { method: 'POST', body });
+      let data = null;
+      try { data = await res.json(); } catch (_) {}
+      if (data && data.ok) {
+        const now = Date.now();
+        store.set(sentKey(), now);
+        updateSent();
+        fPin.value = '';
+        msg('ok', 'ส่งงานสำเร็จในชื่อ ' + data.name + ' (' + data.room + ' เลขที่ ' + data.no + ') เวลา ' + clock(new Date(now)) + ' · ส่งซ้ำได้ ครูจะเห็นทุกครั้งที่ส่ง');
+      } else if (data && data.error) {
+        msg('err', 'ส่งไม่สำเร็จ: ' + data.error);
+      } else {
+        msg('err', 'ส่งไม่สำเร็จ: ระบบรับงานตอบกลับผิดปกติ ลองใหม่อีกครั้ง หรือกด "บันทึก .py" แล้วส่งครูเอง');
+      }
+    } catch (_) {
+      msg('err', 'ส่งไม่สำเร็จ: เชื่อมต่อระบบรับงานไม่ได้ ตรวจสอบอินเทอร์เน็ตแล้วลองใหม่ หรือกด "บันทึก .py" แล้วส่งครูเอง');
+    } finally {
+      sheetOk.disabled = false;
+    }
+  });
+
+  // ---------- open / close ----------
+  let opener = null;
+  function openLab(taskId, autorun) {
+    if (lab.hidden) {
+      opener = document.activeElement;
+      lab.hidden = false;
+      document.documentElement.classList.add('lab-open');
+      if (site) site.inert = true;
+    }
+    if (taskId) selectTask(taskId);
+    spawn();
+    if (autorun) run();
+    setTimeout(() => { if (!waiting) ta.focus({ preventScroll: true }); }, 40);
+  }
+  function closeLab() {
+    save();
+    fPin.value = '';
+    sheet.hidden = true;
+    lab.hidden = true;
+    document.documentElement.classList.remove('lab-open');
+    if (site) site.inert = false;
+    if (opener && opener.focus) opener.focus();
+  }
+  $('lab-close').addEventListener('click', closeLab);
+  lab.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !sheet.hidden) { e.stopPropagation(); closeSheet(); }
+  });
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest && e.target.closest('a[href="#lab"], [data-lab]');
+    if (!el) return;
+    e.preventDefault();
+    openLab(el.dataset.lab || '', el.dataset.autorun === '1');
+  });
+  window.addEventListener('hashchange', () => { if (location.hash === '#lab') openLab(); });
+
+  // ---------- start ----------
+  selectTask(store.get('task', 'demo'));
+  sys('ผลลัพธ์ของโปรแกรมจะแสดงตรงนี้\nกดปุ่มรัน หรือ Ctrl + Enter เพื่อเริ่ม\n');
+  if (location.hash === '#lab') openLab();
+})();
+</script>
+</body>
+</html>
