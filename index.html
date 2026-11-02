@@ -40,7 +40,7 @@ const CONFIG = {
   คำโปรย: "ศูนย์รวมสื่อการสอนของชุมนุมการเขียนโปรแกรม ตั้งแต่ก้าวแรกของ Python ไปจนถึงสร้างเว็บและ IoT ของตัวเอง เรียนผ่านภารกิจ ลงมือทำจริงทุกคาบ",
 
   /* ---------- ลิงก์ปุ่มติดต่อ ---------- */
-  ลิงก์ติดต่อ: "#",       // เช่น ลิงก์กลุ่ม LINE
+  ลิงก์ติดต่อ: "https://discord.gg/atMDBwWjK",       // เช่น ลิงก์กลุ่ม LINE
 
   /* ---------- บทเรียน แบ่งตามเลเวล ----------
      ลิงก์: ใส่ลิงก์สไลด์/เอกสารของบทนั้น                     */
@@ -538,7 +538,7 @@ html.lab-open,html.lab-open body{overflow:hidden}
         </div>
       </div>
       <div class="join-btns">
-        <a class="btn btn-primary" id="link-contact" href="#" style="min-height:56px;font-size:18px">ติดต่อทางกลุ่มชุมนุม
+        <a class="btn btn-primary" id="link-contact" href="#" style="min-height:56px;font-size:18px">Discord ชุมนุม
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -1032,7 +1032,7 @@ self.onmessage = async function (e) {
   $('brand2').textContent = C.ชื่อชุมนุม_อังกฤษ;
   const b = C.ชื่อชุมนุม_อังกฤษ, i = b.indexOf('_');
   $('brand').innerHTML = i > -1 ? esc(b.slice(0, i)) + '<span style="color:var(--h)">_</span>' + esc(b.slice(i + 1)) : esc(b);
-  $('link-contact').href = C.ลิงก์ติดต่อ;
+  $('link-contact').href = C. ลิงก์ติดต่อ || '#';
 
   // ตัววิ่ง
   const m = C.ตัววิ่ง.join(' /// ') + ' /// ';
